@@ -1,6 +1,6 @@
 function getRudeWords(cb) {
   $.ajax({
-    url: '/rude-words.txt',
+    url: '/badwords-en.txt',
     success: function(result) {
       cb(null, result.split('\n'));
     },
