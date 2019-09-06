@@ -28,20 +28,21 @@ function getRudeWordsSet(cb) {
   });
 }
 
-async function textContainsBadWord(text) {
+async function checkBadWordExistence(text) {
   let words = await getRudeWordsSet();
-  for (let word of text.split(/\s/)) {
-    if (words.has(word)) {
-      return true;
+  for (let sentence of text.split(/\./)) {
+    for (let word of sentence.split(/\s/)) {
+      if (words.has(word)) {
+        return { word, sentence };
+      }
     }
   }
-  return false;
+  return null;
 }
 
 async function submitReply(text) {
-  let hasBadWord = await textContainsBadWord(text);
-  console.log('has bad word', hasBadWord);
-  if (hasBadWord) {
-    responsiveVoice.speak('You were a rude rude boy!');
+  let existence = await checkBadWordExistence(text);
+  if (existence) {
+    responsiveVoice.speak('Would you really say? ' + existence.sentence);
   }
 }
