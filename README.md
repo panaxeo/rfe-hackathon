@@ -1,6 +1,11 @@
 # civil-comments
 
-# Run
+## demo
+
+You can view the storybook demo at:
+https://panaxeo.github.io/rfe-hackathon/
+
+## run it locally
 
 ```
 npm i
