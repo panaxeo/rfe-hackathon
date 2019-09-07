@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "storybook": "start-storybook",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "icons": "svgr --replace-attr-value '#FFF=fill' -d ./lib/icons/js ./src/icons/svg"
   },
   "devDependencies": {
