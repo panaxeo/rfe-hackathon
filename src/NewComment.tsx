@@ -90,7 +90,13 @@ export class NewComment extends React.Component<any, NewCommentState> {
     let existence = await this.checkBadWordExistence(text);
     if (!force && existence) {
       (window as any).responsiveVoice.speak(
-        'Would you really say? ' + existence.sentence
+        'Would you really say? ' + existence.sentence,
+        null,
+        {
+          onend: () => {
+            this.setState({ warningConfirmationVisible: true });
+          }
+        }
       );
       this.setState({ warningVisible: true });
       setTimeout(() => {
@@ -115,7 +121,12 @@ export class NewComment extends React.Component<any, NewCommentState> {
           <TextArea rows={5} placeholder="Comment" ref={this.textarea} />
         </div>
         <BadWordsWarningWrapper visible={this.state.warningVisible}>
-          <SoundWave runProgress={this.state.warningVisible} />
+          <SoundWave
+            runProgress={
+              this.state.warningVisible &&
+              !this.state.warningConfirmationVisible
+            }
+          />
         </BadWordsWarningWrapper>
         <BadWordsWarningLabelWrapper visible={this.state.warningVisible}>
           <Label
