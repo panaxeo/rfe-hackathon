@@ -41,7 +41,10 @@ interface NewCommentState {
 }
 
 export class NewComment extends React.Component<any, NewCommentState> {
-  public state: NewCommentState = { warningVisible: false };
+  public state: NewCommentState = {
+    warningVisible: false,
+    warningConfirmationVisible: false
+  };
 
   private textarea: React.RefObject<HTMLTextAreaElement> = React.createRef();
 
