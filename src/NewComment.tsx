@@ -49,9 +49,6 @@ export class NewComment extends React.Component<any, NewCommentState> {
   private textarea: React.RefObject<HTMLTextAreaElement> = React.createRef();
 
   private getRudeWordsSet = async (): Promise<Set<string>> => {
-    // const response = await fetch('/badwords-en.txt');
-
-    // const result = await response.text();
     const set = new Set<string>();
 
     for (let s of words.split('\n')) {
