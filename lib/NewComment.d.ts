@@ -6,6 +6,7 @@ interface NewCommentState {
 export declare class NewComment extends React.Component<any, NewCommentState> {
     state: NewCommentState;
     private textarea;
+    componentDidMount(): void;
     private getRudeWordsSet;
     private clearState;
     private checkBadWordExistence;

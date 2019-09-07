@@ -11,6 +11,7 @@ import { words } from './badwords-en';
 
 interface BadWordsWarningWrapperProps {
   visible: boolean;
+  defaultText?: string;
 }
 
 const BadWordsWarningWrapper = styled.div<BadWordsWarningWrapperProps>`
@@ -47,6 +48,12 @@ export class NewComment extends React.Component<any, NewCommentState> {
   };
 
   private textarea: React.RefObject<HTMLTextAreaElement> = React.createRef();
+
+  public componentDidMount() {
+    if (this.textarea.current) {
+      this.textarea.current.value = this.props.defaultText;
+    }
+  }
 
   private getRudeWordsSet = async (): Promise<Set<string>> => {
     const set = new Set<string>();

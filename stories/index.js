@@ -50,7 +50,7 @@ storiesOf('Full featured demo', module)
         View More Comments
       </Button>
       <Title>New Comment</Title>
-      <NewComment />
+      <NewComment defaultText="Oh shut up you warmongering smeg..." />
     </PageContent>
   ));
 
