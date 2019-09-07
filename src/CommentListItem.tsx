@@ -66,14 +66,14 @@ const LikeCount = styled.span`
   align-items: center;
 `;
 
-interface CommentWrapperProps {
+interface CommentListItemProps {
   title: string;
   text: string;
   avatarURL: string;
   likesCount: number;
 }
 
-export class CommentWrapper extends React.Component<CommentWrapperProps> {
+export class CommentListItem extends React.Component<CommentListItemProps> {
   public render() {
     const { avatarURL, title, text, likesCount } = this.props;
     return (

@@ -1,5 +1,5 @@
 import { Button } from '../lib/Button';
-import { CommentWrapper } from '../lib/CommentWrapper';
+import { CommentListItem } from '../lib/CommentListItem';
 import { Label } from '../lib/Label';
 import { NewComment } from '../lib/NewComment';
 import React from 'react';
@@ -22,7 +22,7 @@ const PageContent = props => {
   );
 };
 
-storiesOf('Comments', module)
+storiesOf('Full featured demo', module)
   .addParameters({
     backgrounds: [
       { name: 'default', value: 'white', default: true },
@@ -30,16 +30,16 @@ storiesOf('Comments', module)
       { name: 'facebook', value: '#3b5998' }
     ]
   })
-  .add('basic list', () => (
+  .add('comments list', () => (
     <PageContent>
       <Title>Comments (19)</Title>
-      <CommentWrapper
+      <CommentListItem
         avatarURL="https://api.adorable.io/avatars/54/john.doe@adorable.png"
         title="John Doe"
         likesCount={3}
         text="I’d seriously worry the professional competency and hiring a business consultant who could not sort out her prescription."
       />
-      <CommentWrapper
+      <CommentListItem
         avatarURL="https://api.adorable.io/avatars/54/jane.doe@adorable.png"
         title="Jane Doe"
         likesCount={5}
@@ -82,7 +82,7 @@ storiesOf('Label', module).add('basic', () => (
 
 storiesOf('Comment List', module).add('item', () => (
   <PageContent>
-    <CommentWrapper
+    <CommentListItem
       avatarURL="https://api.adorable.io/avatars/54/jane.doe@adorable.png"
       title="Jane Doe"
       likesCount={5}
