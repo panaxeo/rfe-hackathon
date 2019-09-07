@@ -3,6 +3,7 @@ import { CommentListItem } from '../lib/CommentListItem';
 import { Label } from '../lib/Label';
 import { NewComment } from '../lib/NewComment';
 import React from 'react';
+import { SoundWave } from '../lib/SoundWave';
 import { storiesOf } from '@storybook/react';
 import styled from 'styled-components';
 
@@ -53,12 +54,18 @@ storiesOf('Full featured demo', module)
     </PageContent>
   ));
 
-storiesOf('New Comment', module).add('create comment box', () => (
-  <PageContent>
-    <Title>New Comment</Title>
-    <NewComment />
-  </PageContent>
-));
+storiesOf('New Comment', module)
+  .add('create comment box', () => (
+    <PageContent>
+      <Title>New Comment</Title>
+      <NewComment />
+    </PageContent>
+  ))
+  .add('sound wave', () => (
+    <PageContent>
+      <SoundWave />
+    </PageContent>
+  ));
 
 storiesOf('Button', module)
   .add('default', () => (
