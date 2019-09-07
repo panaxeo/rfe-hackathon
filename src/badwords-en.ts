@@ -1,4 +1,4 @@
-2 girls 1 cup
+export const words = `2 girls 1 cup
 2g1c
 4r5e
 5h1t
@@ -1700,4 +1700,4 @@ yiffy
 yobbo
 zibbi
 zoophilia
-zubb
+zubb`;
