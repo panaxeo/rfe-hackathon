@@ -36,6 +36,13 @@ const BadWordsWarningLabelWrapper = styled.span<BadWordsWarningWrapperProps>`
     `}
 `;
 
+const SubWarningLabel = styled.span`
+  text-decoration: underline;
+  font: Regular 14px/19px Open Sans;
+  letter-spacing: 0;
+  color: #666666;
+`;
+
 interface NewCommentState {
   warningVisible: boolean;
   warningConfirmationVisible: boolean;
@@ -128,13 +135,15 @@ export class NewComment extends React.Component<any, NewCommentState> {
             }
           />
         </BadWordsWarningWrapper>
-        <BadWordsWarningLabelWrapper visible={this.state.warningVisible}>
-          <Label
-            type="warning"
-            style={{ marginTop: 32, display: 'block', float: 'left' }}
-          >
-            Are you sure?
+        <BadWordsWarningLabelWrapper
+          visible={this.state.warningVisible}
+          style={{ marginTop: 18, display: 'block', float: 'left' }}
+        >
+          <Label type="warning">
+            Are you sure you want to post this comment?
           </Label>
+          <br />
+          <SubWarningLabel>Why to rephrase your comment?</SubWarningLabel>
         </BadWordsWarningLabelWrapper>
         <Button
           style={{
@@ -154,6 +163,7 @@ export class NewComment extends React.Component<any, NewCommentState> {
         </Button>
 
         <Button
+          primary={true}
           style={{
             marginLeft: 5,
             float: 'right',
@@ -174,7 +184,7 @@ export class NewComment extends React.Component<any, NewCommentState> {
             this.clearState();
           }}
         >
-          No I'm not
+          I'm not
         </Button>
         <Button
           style={{
@@ -196,7 +206,7 @@ export class NewComment extends React.Component<any, NewCommentState> {
             this.submitReply(this.textarea.current.value, true)
           }
         >
-          Yes I'm sure
+          I'm sure
         </Button>
       </>
     );

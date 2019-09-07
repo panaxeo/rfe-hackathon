@@ -24,7 +24,7 @@ export class SoundWave extends React.Component<SoundWaveProps, SoundWaveState> {
       }
       let progress = this.state.progress + 0.3;
       if (progress > 1) {
-        progress = 0;
+        progress = 1;
       }
       this.setState({ progress });
     }, 1000);

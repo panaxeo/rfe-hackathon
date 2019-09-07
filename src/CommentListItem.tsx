@@ -46,7 +46,7 @@ const ActionButton = styled.a`
   text-align: left;
   font: Regular 16px/22px Open Sans;
   letter-spacing: 0;
-  color: #287fb8;
+  color: #3eb1c8;
   opacity: 1;
   margin-right: 24px;
 `;

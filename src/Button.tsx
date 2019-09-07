@@ -19,7 +19,7 @@ export const Button = styled.button<ButtonProps>`
   ${props =>
     props.primary &&
     css`
-      background-color: #287fb8;
+      background-color: #3eb1c8;
       color: white;
     `}
 `;
