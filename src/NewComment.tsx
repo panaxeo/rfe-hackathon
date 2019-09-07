@@ -58,6 +58,13 @@ export class NewComment extends React.Component<any, NewCommentState> {
     return set;
   };
 
+  private clearState() {
+    this.setState({
+      warningVisible: false,
+      warningConfirmationVisible: false
+    });
+  }
+
   private checkBadWordExistence = async (
     text: string
   ): Promise<{ word: string; sentence: string } | null> => {
@@ -72,9 +79,9 @@ export class NewComment extends React.Component<any, NewCommentState> {
     return null;
   };
 
-  private submitReply = async (text: string) => {
+  private submitReply = async (text: string, force: boolean = false) => {
     let existence = await this.checkBadWordExistence(text);
-    if (existence) {
+    if (!force && existence) {
       (window as any).responsiveVoice.speak(
         'Would you really say? ' + existence.sentence
       );
@@ -82,6 +89,11 @@ export class NewComment extends React.Component<any, NewCommentState> {
       setTimeout(() => {
         this.setState({ warningConfirmationVisible: true });
       }, 5000);
+    } else {
+      if (this.textarea.current) {
+        this.textarea.current.value = '';
+      }
+      this.clearState();
     }
   };
 
@@ -96,14 +108,14 @@ export class NewComment extends React.Component<any, NewCommentState> {
           <TextArea rows={5} placeholder="Comment" ref={this.textarea} />
         </div>
         <BadWordsWarningWrapper visible={this.state.warningVisible}>
-          <SoundWave />
+          <SoundWave runProgress={this.state.warningVisible} />
         </BadWordsWarningWrapper>
         <BadWordsWarningLabelWrapper visible={this.state.warningVisible}>
           <Label
             type="warning"
             style={{ marginTop: 32, display: 'block', float: 'left' }}
           >
-            Are you sure you want to post this comment?
+            Are you sure?
           </Label>
         </BadWordsWarningLabelWrapper>
         <Button
@@ -125,6 +137,29 @@ export class NewComment extends React.Component<any, NewCommentState> {
 
         <Button
           style={{
+            marginLeft: 5,
+            float: 'right',
+            marginTop: 16,
+            opacity:
+              !this.state.warningVisible ||
+              !this.state.warningConfirmationVisible
+                ? 0
+                : 1,
+            display:
+              this.state.warningVisible && this.state.warningConfirmationVisible
+                ? 'inherit'
+                : 'none',
+            transition: '0.5s'
+          }}
+          onClick={() => {
+            this.textarea.current && this.textarea.current.select();
+            this.clearState();
+          }}
+        >
+          No I'm not
+        </Button>
+        <Button
+          style={{
             float: 'right',
             marginTop: 16,
             opacity:
@@ -140,7 +175,7 @@ export class NewComment extends React.Component<any, NewCommentState> {
           }}
           onClick={() =>
             this.textarea.current &&
-            this.submitReply(this.textarea.current.value)
+            this.submitReply(this.textarea.current.value, true)
           }
         >
           Yes I'm sure

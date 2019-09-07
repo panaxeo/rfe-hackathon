@@ -63,7 +63,10 @@ storiesOf('New Comment', module)
   ))
   .add('sound wave', () => (
     <PageContent>
-      <SoundWave />
+      <h3>Running</h3>
+      <SoundWave runProgress={true} />
+      <h3>Stopped at 50%</h3>
+      <SoundWave runProgress={false} initialProgress={0.5} />
     </PageContent>
   ));
 
