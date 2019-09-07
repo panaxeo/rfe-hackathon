@@ -64,7 +64,7 @@ export class NewComment extends React.Component<any, NewCommentState> {
     let words = await this.getRudeWordsSet();
     for (let sentence of text.split(/\./)) {
       for (let word of sentence.split(/\s/)) {
-        if (words.has(word)) {
+        if (words.has(word.toLowerCase())) {
           return { word, sentence };
         }
       }
