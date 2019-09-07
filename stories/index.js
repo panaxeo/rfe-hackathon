@@ -1,5 +1,6 @@
 import { Button } from '../lib/Button';
 import { CommentWrapper } from '../lib/CommentWrapper';
+import { Label } from '../lib/Label';
 import { NewComment } from '../lib/NewComment';
 import React from 'react';
 import { storiesOf } from '@storybook/react';
@@ -13,6 +14,14 @@ const Title = styled.div`
   margin-bottom: 36px;
 `;
 
+const PageContent = props => {
+  return (
+    <div style={{ padding: 80 }}>
+      <div style={{ width: 625 }}>{props.children}</div>
+    </div>
+  );
+};
+
 storiesOf('Comments', module)
   .addParameters({
     backgrounds: [
@@ -22,47 +31,62 @@ storiesOf('Comments', module)
     ]
   })
   .add('basic list', () => (
-    <div style={{ padding: 80 }}>
-      <div style={{ width: 625 }}>
-        <Title>Comments (19)</Title>
-        <CommentWrapper
-          avatarURL="https://api.adorable.io/avatars/54/john.doe@adorable.png"
-          title="John Doe"
-          likesCount={3}
-          text="I’d seriously worry the professional competency and hiring a business consultant who could not sort out her prescription."
-        />
-        <CommentWrapper
-          avatarURL="https://api.adorable.io/avatars/54/jane.doe@adorable.png"
-          title="Jane Doe"
-          likesCount={5}
-          text="I’d seriously worry the professional competency and hiring a business consultant who could not sort out her prescription."
-        />
-        <Button style={{ marginTop: 14, marginBottom: 36 }}>
-          View More Comments
-        </Button>
-        <Title>New Comment</Title>
-        <NewComment />
-      </div>
-    </div>
+    <PageContent>
+      <Title>Comments (19)</Title>
+      <CommentWrapper
+        avatarURL="https://api.adorable.io/avatars/54/john.doe@adorable.png"
+        title="John Doe"
+        likesCount={3}
+        text="I’d seriously worry the professional competency and hiring a business consultant who could not sort out her prescription."
+      />
+      <CommentWrapper
+        avatarURL="https://api.adorable.io/avatars/54/jane.doe@adorable.png"
+        title="Jane Doe"
+        likesCount={5}
+        text="I’d seriously worry the professional competency and hiring a business consultant who could not sort out her prescription."
+      />
+      <Button style={{ marginTop: 14, marginBottom: 36 }}>
+        View More Comments
+      </Button>
+      <Title>New Comment</Title>
+      <NewComment />
+    </PageContent>
   ));
 
 storiesOf('New Comment', module).add('create comment box', () => (
-  <div style={{ padding: 80 }}>
-    <div style={{ width: 625 }}>
-      <Title>New Comment</Title>
-      <NewComment />
-    </div>
-  </div>
+  <PageContent>
+    <Title>New Comment</Title>
+    <NewComment />
+  </PageContent>
 ));
 
 storiesOf('Button', module)
-  .add('default', () => <Button>I am Default Button</Button>)
-  .add('primary', () => <Button primary={true}>I am Primary Button</Button>);
+  .add('default', () => (
+    <PageContent>
+      <Button>I am Default Button</Button>
+    </PageContent>
+  ))
+  .add('primary', () => (
+    <PageContent>
+      <Button primary={true}>I am Primary Button</Button>
+    </PageContent>
+  ));
 
 storiesOf('Label', module).add('basic', () => (
-  <div>
+  <PageContent>
     <Label>I'm default label</Label>
     <br />
     <Label type="warning">I'm warning label</Label>
-  </div>
+  </PageContent>
+));
+
+storiesOf('Comment List', module).add('item', () => (
+  <PageContent>
+    <CommentWrapper
+      avatarURL="https://api.adorable.io/avatars/54/jane.doe@adorable.png"
+      title="Jane Doe"
+      likesCount={5}
+      text="I’d seriously worry the professional competency and hiring a business consultant who could not sort out her prescription."
+    />
+  </PageContent>
 ));
