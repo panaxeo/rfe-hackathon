@@ -58,7 +58,7 @@ export class NewComment extends React.Component<any, NewCommentState> {
 
   public componentDidMount() {
     if (this.textarea.current) {
-      this.textarea.current.value = this.props.defaultText;
+      this.textarea.current.value = this.props.defaultText || '';
     }
   }
 
